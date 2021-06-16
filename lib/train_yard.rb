@@ -23,4 +23,14 @@ class TrainYard
       train.cargo.include?(car)
     end
   end
+  # this isn't pretty but it works!
+  def sorted_cargo_list
+    list = []
+    @trains.each do |train|
+      train.cargo.each do |cargo|
+        list << cargo[0].type
+      end
+    end
+    list.uniq.sort
+  end
 end
