@@ -15,4 +15,11 @@ class Train
   def add_cars(car, quantity)
     @cargo[car] += quantity
   end
+
+  def weight
+    train_weight = @cargo.sum do |car, quantity|
+      car.weight * quantity
+    end
+    train_weight
+  end
 end
