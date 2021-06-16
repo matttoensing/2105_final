@@ -237,6 +237,6 @@ RSpec.describe TrainYard do
     train_yard.add_train(train3)
     train_yard.add_train(train4)
 
-    expect(train_yard.overflow_cars).to eq(car1)
+    expect(train_yard.overflow_cars).to eq([car1])
   end
 end
