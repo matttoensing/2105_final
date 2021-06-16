@@ -239,7 +239,7 @@ RSpec.describe TrainYard do
 
     expect(train_yard.overflow_cars).to eq([car1])
   end
-
+  # I don't think i did this correctly, gave it a show though
   it 'can determine if there is enough stock of item' do
     train_yard = TrainYard.new({location: 'Brighton'})
 
@@ -268,5 +268,7 @@ RSpec.describe TrainYard do
     train_yard.add_train(train4)
 
     expect(train_yard.unload(car3, 100)).to eq(false)
+
+    expect(train_yard.unload(car1, 7)).to eq(true)
   end
 end

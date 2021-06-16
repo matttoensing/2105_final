@@ -33,7 +33,7 @@ class TrainYard
     end
     list.uniq.sort
   end
-
+  #helper method for total_inventory method, different from iteration 4 method
   def car_count(incoming_car)
     count = 0
     trains_containing(incoming_car).each do |train|
@@ -60,5 +60,13 @@ class TrainYard
       end
     end
     car_overflow.uniq
+  end
+  # I don't think i did this correctly, gave it a show though
+  def unload(car, quantity)
+    count = 0
+    trains_containing(car).each do |train|
+      count += train.weight
+    end
+    count >= quantity
   end
 end
