@@ -33,4 +33,22 @@ class TrainYard
     end
     list.uniq.sort
   end
+
+  def car_count(incoming_car)
+    count = 0
+    trains_containing(incoming_car).each do |train|
+      count += train.cargo[incoming_car]
+    end
+    count
+  end
+
+  def total_inventory
+    total = {}
+    @trains.each do |train|
+      train.cargo.each do |car, value|
+        total[car] = car_count(car)
+      end
+    end
+    total
+  end
 end
