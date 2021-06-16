@@ -51,4 +51,16 @@ class TrainYard
     end
     total
   end
+
+  def overflow_cars
+    car_overflow = nil
+    @trains.each do |train|
+      train.cargo.each do |car|
+        if trains_containing(car[0]).length > 1 && total_inventory[car[0]] >= 10
+          car_overflow = car[0]
+        end
+      end
+    end
+    car_overflow
+  end
 end
