@@ -44,8 +44,8 @@ class TrainYard
 
   def total_inventory
     total = {}
-    @trains.each do |train|
-      train.cargo.each do |car, value|
+    @trains.select do |train|
+      train.cargo.select do |car, value|
         total[car] = car_count(car)
       end
     end
@@ -53,14 +53,12 @@ class TrainYard
   end
 
   def overflow_cars
-    car_overflow = nil
+    car_overflow = []
     @trains.each do |train|
       train.cargo.each do |car|
-        if trains_containing(car[0]).length > 1 && total_inventory[car[0]] >= 10
-          car_overflow = car[0]
-        end
+        car_overflow << car[0] if trains_containing(car[0]).length > 1 && total_inventory[car[0]] >= 10
       end
     end
-    car_overflow
+    car_overflow.uniq
   end
 end
