@@ -16,4 +16,40 @@ RSpec.describe Train do
     expect(train1.type).to eq('Tank')
     expect(train1.cargo).to eq({})
   end
+
+  it 'can count the number of cars' do
+    car1 = Car.new({type: 'Mail', weight: 5})
+    train1 = Train.new({name: 'Thomas', type: 'Tank'})
+
+    expect(train1.count_cars(car1)).to eq(0)
+  end
+
+  it 'can add cars and then count them' do
+    car1 = Car.new({type: 'Mail', weight: 5})
+    car2 = Car.new({type: 'Passengers', weight: 1})
+    train1 = Train.new({name: 'Thomas', type: 'Tank'})
+
+    train1.add_cars(car1, 2)
+
+    expected = {car1 => 2}
+
+    expect(train1.cargo).to eq(expected)
+    expect(train1.count_cars(car1)).to eq(2)
+
+    train1.add_cars(car1, 3)
+
+    expected2 = expected = {car1 => 5}
+
+    expect(train1.cargo).to eq(expected2)
+    expect(train1.count_cars(car1)).to eq(5)
+
+    train1.add_cars(car2, 10)
+
+    expected3 = {
+      car1 => 5,
+      car2 => 10
+    }
+
+  expect(train1.cargo).to eq(expected3)
+  end
 end
